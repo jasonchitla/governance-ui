@@ -64,6 +64,13 @@ export interface FriktionWithdrawForm {
   mintInfo: MintInfo | undefined
 }
 
+export interface FriktionDepositForm {
+  amount: number | undefined
+  governedTokenAccount: GovernedTokenAccount | undefined
+  programId: string | undefined
+  mintInfo: MintInfo | undefined
+}
+
 export interface GrantForm {
   destinationAccount: string
   amount: number | undefined
