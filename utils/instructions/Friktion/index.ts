@@ -20,13 +20,11 @@ import {
   PublicKey,
   TransactionInstruction,
 } from '@solana/web3.js'
-
 import type { ConnectionContext } from 'utils/connection'
 import { getATA } from '../../ataTools'
 import { GovernedTokenAccount } from '../../tokens'
 import { UiInstruction } from '../../uiTypes/proposalCreationTypes'
 import { validateInstruction } from '@utils/instructionTools'
-import BN from 'bn.js'
 
 export async function getFriktionDepositInstruction({
   schema,
@@ -282,7 +280,7 @@ export async function getFriktionWithdrawInstruction({
       })
 
       const withdrawIx = await cVoltSDK.withdrawHumanAmount(
-        new BN(amount),
+        new Decimal(amount),
         depositTokenMint,
         vaultTokenAccount,
         null,
