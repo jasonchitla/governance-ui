@@ -54,6 +54,8 @@ import CreateNftPluginRegistrar from './components/instructions/NftVotingPlugin/
 import CreateNftPluginMaxVoterWeightRecord from './components/instructions/NftVotingPlugin/CreateMaxVoterWeightRecord'
 import ConfigureNftPluginCollection from './components/instructions/NftVotingPlugin/ConfigureCollection'
 import FriktionWithdraw from './components/instructions/Friktion/FriktionWithdraw'
+import FriktionClaimPendingDeposit from './components/instructions/Friktion/FriktionClaimPendingDeposit'
+import FriktionClaimPendingWithdraw from './components/instructions/Friktion/FriktionClaimPendingWithdraw'
 import MakeChangePerpMarket from './components/instructions/Mango/MakeChangePerpMarket'
 import MakeAddOracle from './components/instructions/Mango/MakeAddOracle'
 import MakeAddSpotMarket from './components/instructions/Mango/MakeAddSpotMarket'
@@ -326,6 +328,14 @@ const New = () => {
         return <FriktionDeposit index={idx} governance={governance} />
       case Instructions.WithdrawFromVolt:
         return <FriktionWithdraw index={idx} governance={governance} />
+      case Instructions.ClaimPendingDeposit:
+        return (
+          <FriktionClaimPendingDeposit index={idx} governance={governance} />
+        )
+      case Instructions.ClaimPendingWithdraw:
+        return (
+          <FriktionClaimPendingWithdraw index={idx} governance={governance} />
+        )
       case Instructions.CreateSolendObligationAccount:
         return <CreateObligationAccount index={idx} governance={governance} />
       case Instructions.InitSolendObligationAccount:

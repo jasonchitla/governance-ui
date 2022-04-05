@@ -293,6 +293,18 @@ export const getFriktionWithdrawSchema = () => {
   })
 }
 
+export const getFriktionClaimPendingDepositSchema = () => {
+  return yup.object().shape({
+    governedTokenAccount: yup.object().required('Source account is required'),
+  })
+}
+
+export const getFriktionClaimPendingWithdrawSchema = () => {
+  return yup.object().shape({
+    governedTokenAccount: yup.object().required('Source account is required'),
+  })
+}
+
 export const getTokenTransferSchema = ({
   form,
   connection,

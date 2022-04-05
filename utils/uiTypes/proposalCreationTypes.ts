@@ -66,7 +66,19 @@ export interface FriktionWithdrawForm {
 
 export interface FriktionDepositForm {
   amount: number | undefined
-  governedTokenAccount: GovernedTokenAccount | undefined
+  governedTokenAccount: AssetAccount | undefined
+}
+
+export interface FriktionClaimPendingDepositForm {
+  governedTokenAccount: AssetAccount | undefined
+  voltVaultId: string
+  programId: string | undefined
+  mintInfo: MintInfo | undefined
+}
+
+export interface FriktionClaimPendingWithdrawForm {
+  governedTokenAccount: AssetAccount | undefined
+  voltVaultId: string
   programId: string | undefined
   mintInfo: MintInfo | undefined
 }
@@ -302,6 +314,8 @@ export enum Instructions {
   WithrawFromCastle,
   DepositIntoVolt,
   WithdrawFromVolt,
+  ClaimPendingDeposit,
+  ClaimPendingWithdraw,
   CreateSolendObligationAccount,
   InitSolendObligationAccount,
   DepositReserveLiquidityAndObligationCollateral,

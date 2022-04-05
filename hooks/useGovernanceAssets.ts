@@ -226,6 +226,16 @@ export default function useGovernanceAssets() {
       isVisible: canUseAnyInstruction,
     },
     {
+      id: Instructions.ClaimPendingDeposit,
+      name: 'Friktion: Claim Volt Tokens',
+      isVisible: canUseAnyInstruction,
+    },
+    {
+      id: Instructions.ClaimPendingWithdraw,
+      name: 'Friktion: Claim Pending Withdraw',
+      isVisible: canUseAnyInstruction,
+    },
+    {
       id: Instructions.CreateSolendObligationAccount,
       name: 'Solend: Create Obligation Account',
       isVisible: canUseAnyInstruction,
