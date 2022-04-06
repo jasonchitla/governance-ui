@@ -22,9 +22,9 @@ import {
 } from '@solana/web3.js'
 import type { ConnectionContext } from 'utils/connection'
 import { getATA } from '../../ataTools'
-import { GovernedTokenAccount } from '../../tokens'
 import { UiInstruction } from '../../uiTypes/proposalCreationTypes'
 import { validateInstruction } from '@utils/instructionTools'
+import { AssetAccount } from '@utils/uiTypes/assets'
 
 export async function getFriktionDepositInstruction({
   schema,
@@ -45,16 +45,16 @@ export async function getFriktionDepositInstruction({
   const isValid = await validateInstruction({ schema, form, setFormErrors })
   let serializedInstruction = ''
   const prerequisiteInstructions: TransactionInstruction[] = []
-  const governedTokenAccount = form.governedTokenAccount as GovernedTokenAccount
+  const governedTokenAccount = form.governedTokenAccount as AssetAccount
   const voltVaultId = new PublicKey(form.voltVaultId as string)
 
   const signers: Keypair[] = []
   if (
     isValid &&
     amount &&
-    governedTokenAccount?.token?.publicKey &&
-    governedTokenAccount?.token &&
-    governedTokenAccount?.mint?.account &&
+    governedTokenAccount?.extensions.token?.publicKey &&
+    governedTokenAccount?.extensions.token &&
+    governedTokenAccount?.extensions.mint?.account &&
     governedTokenAccount?.governance &&
     wallet
   ) {
@@ -121,7 +121,7 @@ export async function getFriktionDepositInstruction({
       }
       depositTokenAccountKey = receiverAddress
     } else {
-      depositTokenAccountKey = governedTokenAccount.transferAddress!
+      depositTokenAccountKey = governedTokenAccount.extensions.transferAddress!
     }
 
     try {
@@ -130,7 +130,7 @@ export async function getFriktionDepositInstruction({
       if (!governedTokenAccount.isSol) {
         const underlyingAssetMintInfo = await new Token(
           connection.current,
-          governedTokenAccount.mint.publicKey,
+          governedTokenAccount.extensions.mint.publicKey,
           TOKEN_PROGRAM_ID,
           (null as unknown) as Account
         ).getMintInfo()
@@ -143,7 +143,7 @@ export async function getFriktionDepositInstruction({
             depositTokenAccountKey,
             receiverAddress,
             true,
-            governedTokenAccount.transferAddress!,
+            governedTokenAccount.extensions.transferAddress!,
             governedTokenAccount.governance.pubkey,
             decimals
           )
@@ -161,7 +161,7 @@ export async function getFriktionDepositInstruction({
         const transferAddressIndex = depositIx.keys.findIndex(
           (k) =>
             k.pubkey.toString() ===
-            governedTokenAccount.transferAddress?.toString()
+            governedTokenAccount.extensions.transferAddress?.toString()
         )
         depositIx.keys[transferAddressIndex].isSigner = true
         depositIx.keys[transferAddressIndex].isWritable = true
@@ -212,16 +212,16 @@ export async function getFriktionWithdrawInstruction({
   const isValid = await validateInstruction({ schema, form, setFormErrors })
   let serializedInstruction = ''
   const prerequisiteInstructions: TransactionInstruction[] = []
-  const governedTokenAccount = form.governedTokenAccount as GovernedTokenAccount
+  const governedTokenAccount = form.governedTokenAccount as AssetAccount
   const voltVaultId = new PublicKey(form.voltVaultId as string)
   const depositTokenMint = new PublicKey(form.depositTokenMint as string)
   const signers: Keypair[] = []
   if (
     isValid &&
     amount &&
-    governedTokenAccount?.token?.publicKey &&
-    governedTokenAccount?.token &&
-    governedTokenAccount?.mint?.account &&
+    governedTokenAccount?.extensions.token?.publicKey &&
+    governedTokenAccount?.extensions.token &&
+    governedTokenAccount?.extensions.mint?.account &&
     governedTokenAccount?.governance &&
     wallet
   ) {
@@ -268,7 +268,7 @@ export async function getFriktionWithdrawInstruction({
         }
         depositTokenDest = receiverAddress
       } else {
-        depositTokenDest = governedTokenAccount.transferAddress!
+        depositTokenDest = governedTokenAccount.extensions.transferAddress!
       }
 
       //we find true receiver address if its wallet and we need to create ATA the ata address will be the receiver
@@ -331,14 +331,14 @@ export async function getFriktionClaimPendingDepositInstruction({
   const isValid = await validateInstruction({ schema, form, setFormErrors })
   let serializedInstruction = ''
   const prerequisiteInstructions: TransactionInstruction[] = []
-  const governedTokenAccount = form.governedTokenAccount as GovernedTokenAccount
+  const governedTokenAccount = form.governedTokenAccount as AssetAccount
   const voltVaultId = new PublicKey(form.voltVaultId as string)
   const signers: Keypair[] = []
   if (
     isValid &&
-    governedTokenAccount?.token?.publicKey &&
-    governedTokenAccount?.token &&
-    governedTokenAccount?.mint?.account &&
+    governedTokenAccount?.extensions.token?.publicKey &&
+    governedTokenAccount?.extensions.token &&
+    governedTokenAccount?.extensions.mint?.account &&
     governedTokenAccount?.governance &&
     wallet
   ) {
@@ -442,14 +442,14 @@ export async function getFriktionClaimPendingWithdrawInstruction({
   const isValid = await validateInstruction({ schema, form, setFormErrors })
   let serializedInstruction = ''
   const prerequisiteInstructions: TransactionInstruction[] = []
-  const governedTokenAccount = form.governedTokenAccount as GovernedTokenAccount
+  const governedTokenAccount = form.governedTokenAccount as AssetAccount
   const voltVaultId = new PublicKey(form.voltVaultId as string)
   const signers: Keypair[] = []
   if (
     isValid &&
-    governedTokenAccount?.token?.publicKey &&
-    governedTokenAccount?.token &&
-    governedTokenAccount?.mint?.account &&
+    governedTokenAccount?.extensions.token?.publicKey &&
+    governedTokenAccount?.extensions.token &&
+    governedTokenAccount?.extensions.mint?.account &&
     governedTokenAccount?.governance &&
     wallet
   ) {
@@ -496,7 +496,7 @@ export async function getFriktionClaimPendingWithdrawInstruction({
         }
         depositTokenDest = receiverAddress
       } else {
-        depositTokenDest = governedTokenAccount.transferAddress!
+        depositTokenDest = governedTokenAccount.extensions.transferAddress!
       }
 
       const key = (

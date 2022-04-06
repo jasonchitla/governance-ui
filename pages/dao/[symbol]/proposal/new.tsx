@@ -95,10 +95,7 @@ const New = () => {
 
   const { getAvailableInstructions } = useGovernanceAssets()
   const availableInstructions = getAvailableInstructions()
-  const {
-    fetchRealmGovernance,
-    fetchTokenAccountsForSelectedRealmGovernances,
-  } = useWalletStore((s) => s.actions)
+  const { fetchRealmGovernance } = useWalletStore((s) => s.actions)
   const [voteByCouncil, setVoteByCouncil] = useState(false)
   const [form, setForm] = useState({
     title: '',
@@ -259,11 +256,6 @@ const New = () => {
 
     setGovernance(governedAccount)
   }, [instructionsData])
-
-  useEffect(() => {
-    //fetch to be up to date with amounts
-    fetchTokenAccountsForSelectedRealmGovernances()
-  }, [])
 
   const getCurrentInstruction = ({ typeId, idx }) => {
     switch (typeId) {
