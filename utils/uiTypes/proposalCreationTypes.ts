@@ -46,14 +46,14 @@ export interface FriktionWithdrawForm {
 }
 
 export interface FriktionClaimPendingDepositForm {
-  governedTokenAccount: GovernedTokenAccount | undefined
+  governedTokenAccount: AssetAccount | undefined
   voltVaultId: string
   programId: string | undefined
   mintInfo: MintInfo | undefined
 }
 
 export interface FriktionClaimPendingWithdrawForm {
-  governedTokenAccount: GovernedTokenAccount | undefined
+  governedTokenAccount: AssetAccount | undefined
   voltVaultId: string
   programId: string | undefined
   mintInfo: MintInfo | undefined
