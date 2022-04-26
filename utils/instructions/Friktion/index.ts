@@ -67,8 +67,7 @@ export async function getFriktionDepositInstruction({
     const cVoltSDK = new ConnectedVoltSDK(
       connection.current,
       wallet.publicKey as PublicKey,
-      await sdk.loadVoltByKey(voltVaultId),
-      undefined,
+      await sdk.loadVoltAndExtraDataByKey(voltVaultId),
       governedTokenAccount.governance.pubkey
     )
 
@@ -233,8 +232,7 @@ export async function getFriktionWithdrawInstruction({
     const cVoltSDK = new ConnectedVoltSDK(
       connection.current,
       wallet.publicKey as PublicKey,
-      await sdk.loadVoltByKey(voltVaultId),
-      undefined,
+      await sdk.loadVoltAndExtraDataByKey(voltVaultId),
       governedTokenAccount.governance.pubkey
     )
 
@@ -348,8 +346,7 @@ export async function getFriktionClaimPendingDepositInstruction({
     const cVoltSDK = new ConnectedVoltSDK(
       connection.current,
       wallet.publicKey as PublicKey,
-      await sdk.loadVoltByKey(voltVaultId),
-      undefined,
+      await sdk.loadVoltAndExtraDataByKey(voltVaultId),
       governedTokenAccount.governance.pubkey
     )
 
@@ -403,6 +400,8 @@ export async function getFriktionClaimPendingDepositInstruction({
       ) {
         const ix = await cVoltSDK.claimPending(receiverAddress)
         serializedInstruction = serializeInstructionToBase64(ix)
+      } else {
+        throw new Error('No pending deposit to claim')
       }
     } catch (e) {
       if (e instanceof Error) {
@@ -459,8 +458,7 @@ export async function getFriktionClaimPendingWithdrawInstruction({
     const cVoltSDK = new ConnectedVoltSDK(
       connection.current,
       wallet.publicKey as PublicKey,
-      await sdk.loadVoltByKey(voltVaultId),
-      undefined,
+      await sdk.loadVoltAndExtraDataByKey(voltVaultId),
       governedTokenAccount.governance.pubkey
     )
 
@@ -518,6 +516,8 @@ export async function getFriktionClaimPendingWithdrawInstruction({
       ) {
         const ix = await cVoltSDK.claimPendingWithdrawal(depositTokenDest)
         serializedInstruction = serializeInstructionToBase64(ix)
+      } else {
+        throw new Error('No pending withdrawal to claim')
       }
     } catch (e) {
       if (e instanceof Error) {
