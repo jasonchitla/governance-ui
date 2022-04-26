@@ -222,7 +222,7 @@ const TokenDeposit = ({
 
     await sendTransaction({
       connection,
-      wallet,
+      wallet: wallet!,
       transaction,
       signers,
       sendingMessage: 'Depositing tokens',
@@ -286,7 +286,7 @@ const TokenDeposit = ({
         // Note: We might hit single transaction limits here (accounts and size) if user has too many unrelinquished votes
         // It's not going to be an issue for now due to the limited number of proposals so I'm leaving it for now
         // As a temp. work around I'm leaving the 'Release Tokens' button on finalized Proposal to make it possible to release the tokens from one Proposal at a time
-        withRelinquishVote(
+        await withRelinquishVote(
           instructions,
           realmInfo!.programId,
           proposal.account.governance,
@@ -322,7 +322,7 @@ const TokenDeposit = ({
         const transaction = new Transaction().add(...chunk)
         await sendTransaction({
           connection,
-          wallet,
+          wallet: wallet!,
           transaction,
           sendingMessage:
             index == ixChunks.length - 1

@@ -32,6 +32,8 @@ export const DEFAULT_GOVERNANCE_PROGRAM_ID =
 export const DEFAULT_TEST_GOVERNANCE_PROGRAM_ID =
   'GTesTBiEWE32WHXXE2S4XbZvA5CrEc4xs6ZgRe895dP'
 
+export const MANGO_DAO_TREASURY = '9RGoboEjmaAjSCXsKi6p6zJucnwF3Eg5NUN9jPS6ziL3'
+
 // Well known account names displayed on the instruction card
 export const ACCOUNT_NAMES = {
   AQeo6r6jdwnmf48AMejgoKdUGtV8qzbVJH42Gb5sWdi: 'Deprecated: Mango IDO program',
@@ -39,6 +41,10 @@ export const ACCOUNT_NAMES = {
     'Mango Developer Council Mint',
 
   Guiwem4qBivtkSFrxZAEfuthBz6YuWyCwS4G3fjBYu5Z: 'Mango DAO MNGO Treasury Vault',
+  '7zGXUAeUkY9pEGfApsY26amibvqsf2dmty1cbtxHdfaQ':
+    'Mango DAO SOL Treasury Vault Governance',
+  '5tgfd6XgwiXB9otEnzFpXK11m7Q7yZUaAJzWK4oT5UGF':
+    'Mango DAO SOL Treasury Vault',
   '9RGoboEjmaAjSCXsKi6p6zJucnwF3Eg5NUN9jPS6ziL3': 'Mango DAO MNGO Treasury',
   '4PdEyhrV3gaUj4ffwjKGXBLo42jF2CQCCBoXenwCRWXf':
     'Mango DAO USDC Treasury Vault',
@@ -110,20 +116,22 @@ export const ACCOUNT_NAMES = {
     'ClubDAO Main NFT Treasury Vault',
 
   //MonkeDAO
-  Cb4uLreZRcb7kbu6gbsGJp2xjnU5K25MDZbvFknBFyqU: 'ClubDAO NMBC Royalties Vault',
-  '9Z6x8sVq78saCddcveTSmQWFHCS9vaMS7eoeQMrGMUXw': 'Luna Holdings',
   DKdBj8KF9sieWq2XWkZVnRPyDrw9PwAHinkCMvjAkRdZ: "MonkeDAO NFT's",
-  EdNP7sERADU525E9bov6YdfL3oK3idnRTMdKUh2J7FCM:
-    'SMB SOL Royalty Treasury Holdings',
-  '5bAHkmagXYJzjzxYPDht7AVZRxjiJ6r12NQU3L67bkTr': 'SMB USDC Royalty Holdings',
-  CYLSMKuMiDFNg4eDrZdaaWYCJedsLMAEQgUCtnoUq4n1:
-    'Primary USDC Treasury Holdings',
-  '2qhApGpizKoCyw45oho8Z4F7c14Es4tKvHmBuTnCqubn':
-    'Primary SOL Treasury Holdings',
-  J45sC6ow6u2cXZU8tvewC548CcFiU6VGnFpnxW71WNgm: 'GG SHDW Tokens',
-  wpSyytRSgo1b5RE6PYT9GMWubdq6EdbGC8PEbcz4Kff: 'DAOPool Fee Collection',
-  xuEfu6gmCn1RSXSAVpWLTYttx685m9rAbzqwwYUjYXJ: 'DAOJones Fractionalized Tokens',
-  GQDFqZ7URyWAiPMQs4ywZ9pKBqrUg4srdkqnZpRUstQz: 'Merch Escrow Holdings',
+  '7r6xoSMC9xvrmM3LDV6p67hW4MqDmf4iocQB7CarqWGv': 'Primary Treasury Wallet',
+  '3Gaxab6KF9SHVq8qvKLAdDQMX6ZYJxctmLL8QYk5gGRE': 'Treasury USDC',
+  BQxsFSHwoWAi6MQyUXusvNjD6kAbBtcxGcZZ11zz2vGy: 'Treasury SOL',
+  BQ2nz8oWcZ4PuEskvFboUtJDa1AVzdXaJh1vHajgUWiq: 'Marketing Wallet',
+  H3fxHgqXBpXjoSnWHPYSsNkVTuZcP9jRXDE6eT6kganp: 'Marketing USDC',
+  HAryckvjyViFQEmhmMoCtqqBMJnpXEYViamyDhZUJfnG: 'SMB Royalty Wallet',
+  E3KpSoZL3EDeXw8EtgHfi83n663LFfyEZ8r9J7kdaEC2: 'SMB Royalty SOL',
+  CNz3mg35f5HQ7wT2XsrBVNcSVdpWSSG8dwVLhCzsmUPo: 'Merch Escrow Wallet',
+  '2rhSFgwgwuKYMaQUa5QcHBpaW5zoBL32ib3aqDW9zkcM': 'Merch USDC',
+  '6VWfsPjYRGetHhQMJBh7cksKoN7MWimgeyeYHg824jRR': 'UST',
+  '2eBFMe5jCG4hw3ooNr3UFQbVs6hE7bacHuuhZg4n8nCP': 'SHDW',
+  Gr6PqrrZqiay44937AKthj7FEpShCBb94Jgw89BUr2b2: 'daoSOL',
+  '2fEL6au59KfmtarX5cJD4a6EaxRr6gLBvFkE65uEPJ4U': 'DAOJONES',
+  FboFh3DkwmAeH4GyM5Ttd8ismd2wq6c8MrRkSsmr5nQW: 'LUNA',
+  GnfeSuTwbXcxVnuXJTzx172174PJAHUfXpNgsBdGCncd: 'Solend Holdings',
 }
 
 // Blacklisted governances which should not be displayed in the UI
@@ -134,6 +142,7 @@ export const HIDDEN_GOVERNANCES = new Map<string, string>([
   ['2j2oe8YXdYJyS7G8CeEW5KARijdjjZkuPy5MnN8gBQqQ', ''],
   ['56yqzBEr9BqDGjYPJz9G8LVQrbXsQM2t2Yq3Gk8S56d1', ''],
   ['4styeLGsBRpV4xKsCNMRPb94U7JN8ZXoXJTLZA5hdjo9', ''],
+  ['CKWNNwtn5nbsGMkvtRwHDv4QTyoHMByKVd7Ypo2deNpc', ''],
 ])
 
 // Blacklisted proposals which should not be displayed in the UI
@@ -142,11 +151,11 @@ export const HIDDEN_PROPOSALS = new Map<string, string>([
   ['E8XgiVpDJgDf4XgBKjZnMs3S1K7cmibtbDqjw5aNobCZ', ''],
 ])
 
-export const DEFAULT_NFT_TREASURY_MINT =
-  'GNFTm5rz1Kzvq94G7DJkcrEUnCypeQYf7Ya8arPoHWvw'
-
 export const DEFAULT_NATIVE_SOL_MINT =
   'GSoLvSToqaUmMyqP12GffzcirPAickrpZmVUFtek6x5u'
+
+export const DEFAULT_NFT_TREASURY_MINT =
+  'GNFTm5rz1Kzvq94G7DJkcrEUnCypeQYf7Ya8arPoHWvw'
 
 export function getAccountName(accountPk: PublicKey) {
   return ACCOUNT_NAMES[accountPk.toBase58()] ?? getProgramName(accountPk)
@@ -157,6 +166,7 @@ export const CHAT_PROGRAM_ID = new PublicKey(
 )
 
 export const WSOL_MINT = 'So11111111111111111111111111111111111111112'
+export const WSOL_MINT_PK = new PublicKey(WSOL_MINT)
 
 const HIDDEN_MNGO_TREASURES = [
   'GZQSF4Fh9xK7rf9WBEhawXYFw8qPXeatZLUqVQeuW3X8',
@@ -167,6 +177,8 @@ const HIDDEN_MNGO_TREASURES = [
   '6VYcrmbK4QNC7WpfVRXBAXP59ZH2FkUMBoMYhtgENGMn',
   '4Z8nAK9grjokaUqJNtw2AEkYAR1vcw8pkCWZcbVEEdh5',
   'FTiWWq3cgETfPkYqP36xFUhT7KMoFYyCiPKeYQU1e4U8',
+  'FrkLPsCadx4tE4qDobbu2GTD5ffjWBpormHbLLy35PUS',
+  'CaoFkVyPJugKMdzDT1NGnsQJ8dWe4kZFaETCbtWz1QBr',
 ]
 
 export const HIDDEN_TREASURES = [...HIDDEN_MNGO_TREASURES]
