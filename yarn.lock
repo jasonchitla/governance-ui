@@ -855,10 +855,10 @@
     dotenv-expand "^6.0.1"
     yargs "^17.0.1"
 
-"@friktion-labs/entropy-client@^1.1.5":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@friktion-labs/entropy-client/-/entropy-client-1.1.6.tgz#a6aec7610986f93c7e37a89489c1a76d3c0069f3"
-  integrity sha512-qo/lk1+J/n2QHWOC/Ia9khanq/xewiFGPRbYzN7g8v+3I8ACBHgLTElNUROyxANCdI55eChH55BpurcPX9XLIA==
+"@friktion-labs/entropy-client@^1.4.7":
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/@friktion-labs/entropy-client/-/entropy-client-1.4.8.tgz#dd9c6a386603114e93467847ba513ffbc35924a9"
+  integrity sha512-yB8ZEzhJ9olqo9wV4Mr7DuVnIQFFZMKRG3Ia4RYg8w2DjZSt2aJRw44f21tAJMmE7QK2/4WiOt3WquocOi8uuw==
   dependencies:
     "@friktion-labs/entropy-client" "^1.0.0"
     "@project-serum/anchor" "^0.16.2"
@@ -875,12 +875,12 @@
     dotenv-expand "^6.0.1"
     yargs "^17.0.1"
 
-"@friktion-labs/friktion-sdk@^1.1.53":
-  version "1.1.54"
-  resolved "https://registry.yarnpkg.com/@friktion-labs/friktion-sdk/-/friktion-sdk-1.1.54.tgz#7deddcc9be358007e98df322c33dadb65afa700d"
-  integrity sha512-mlUVs9A83KuNpQrI959SDueNLRX0eBkVHCM6a0PNR0ssTkLuua/EE7sL/RaDaBeQ1EJbNOvkIfwCAWJowKFgfg==
+"@friktion-labs/friktion-sdk@^1.1.68":
+  version "1.1.68"
+  resolved "https://registry.yarnpkg.com/@friktion-labs/friktion-sdk/-/friktion-sdk-1.1.68.tgz#0dd08d41b0d516d7582c123cd294616693d6dfb1"
+  integrity sha512-5oqAA+5nK6yaNkkbMLDekfIqo7L1OnNetaPCQF1XqUP+gCPm8CxL6D6db94OxR5paDFJqqWOuAvZzryOQg4lTw==
   dependencies:
-    "@friktion-labs/entropy-client" "^1.1.5"
+    "@friktion-labs/entropy-client" "^1.4.7"
     "@oclif/command" "^1.8.16"
     "@project-serum/anchor" "^0.23.0"
     "@project-serum/common" "^0.0.1-beta.3"
