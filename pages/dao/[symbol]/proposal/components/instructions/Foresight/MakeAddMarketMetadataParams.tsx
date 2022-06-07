@@ -25,19 +25,23 @@ export default function MakeAddMarketMetadataParams({
   index: number
   governance: ProgramAccount<Governance> | null
 }) {
-  const { inputProps, effector, governedAccountSelect, wallet } =
-    commonAssets<ForesightMakeAddMarketMetadataParams>(
-      {
-        marketListId: '',
-        marketId: 0,
-        content: '',
-        field: Object.keys(
-          foresightConsts.MARKET_METADATA_FIELDS
-        )[0] as foresightConsts.MarketMetadataFieldName,
-      },
-      index,
-      governance
-    )
+  const {
+    inputProps,
+    effector,
+    governedAccountSelect,
+    wallet,
+  } = commonAssets<ForesightMakeAddMarketMetadataParams>(
+    {
+      marketListId: '',
+      marketId: 0,
+      content: '',
+      field: Object.keys(
+        foresightConsts.MARKET_METADATA_FIELDS
+      )[0] as foresightConsts.MarketMetadataFieldName,
+    },
+    index,
+    governance
+  )
   async function ixCreator(form: ForesightMakeAddMarketMetadataParams) {
     const field = foresightConsts.MARKET_METADATA_FIELDS[form.field]
     const { ix } = await foresightGov.genWriteToFieldMarketMetadataIx(
